@@ -45,7 +45,16 @@
             this.buttonJulia = new System.Windows.Forms.Button();
             this.buttonRender = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxXMin = new System.Windows.Forms.TextBox();
+            this.textBoxXMax = new System.Windows.Forms.TextBox();
+            this.textBoxYMin = new System.Windows.Forms.TextBox();
+            this.textBoxYMax = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxImageHeight = new System.Windows.Forms.TextBox();
+            this.textBoxImageWidth = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -156,7 +165,7 @@
             // 
             // buttonMandelbrot
             // 
-            this.buttonMandelbrot.Location = new System.Drawing.Point(232, 219);
+            this.buttonMandelbrot.Location = new System.Drawing.Point(315, 397);
             this.buttonMandelbrot.Name = "buttonMandelbrot";
             this.buttonMandelbrot.Size = new System.Drawing.Size(75, 23);
             this.buttonMandelbrot.TabIndex = 15;
@@ -166,7 +175,7 @@
             // 
             // buttonJulia
             // 
-            this.buttonJulia.Location = new System.Drawing.Point(313, 219);
+            this.buttonJulia.Location = new System.Drawing.Point(396, 397);
             this.buttonJulia.Name = "buttonJulia";
             this.buttonJulia.Size = new System.Drawing.Size(75, 23);
             this.buttonJulia.TabIndex = 16;
@@ -176,7 +185,7 @@
             // 
             // buttonRender
             // 
-            this.buttonRender.Location = new System.Drawing.Point(232, 286);
+            this.buttonRender.Location = new System.Drawing.Point(232, 442);
             this.buttonRender.Name = "buttonRender";
             this.buttonRender.Size = new System.Drawing.Size(75, 23);
             this.buttonRender.TabIndex = 17;
@@ -188,27 +197,115 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(228, 187);
+            this.label1.Location = new System.Drawing.Point(228, 397);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Preset";
+            this.label1.Text = "Presets";
+            // 
+            // textBoxXMin
+            // 
+            this.textBoxXMin.Location = new System.Drawing.Point(232, 201);
+            this.textBoxXMin.Name = "textBoxXMin";
+            this.textBoxXMin.Size = new System.Drawing.Size(100, 20);
+            this.textBoxXMin.TabIndex = 20;
+            this.textBoxXMin.Text = "-2.000";
+            // 
+            // textBoxXMax
+            // 
+            this.textBoxXMax.Location = new System.Drawing.Point(350, 201);
+            this.textBoxXMax.Name = "textBoxXMax";
+            this.textBoxXMax.Size = new System.Drawing.Size(100, 20);
+            this.textBoxXMax.TabIndex = 21;
+            this.textBoxXMax.Text = "2.000";
+            // 
+            // textBoxYMin
+            // 
+            this.textBoxYMin.Location = new System.Drawing.Point(118, 229);
+            this.textBoxYMin.Name = "textBoxYMin";
+            this.textBoxYMin.Size = new System.Drawing.Size(100, 20);
+            this.textBoxYMin.TabIndex = 22;
+            this.textBoxYMin.Text = "-2.000";
+            // 
+            // textBoxYMax
+            // 
+            this.textBoxYMax.Location = new System.Drawing.Point(118, 283);
+            this.textBoxYMax.Name = "textBoxYMax";
+            this.textBoxYMax.Size = new System.Drawing.Size(100, 20);
+            this.textBoxYMax.TabIndex = 23;
+            this.textBoxYMax.Text = "2.000";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(92, 253);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 20);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "y";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(334, 177);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 20);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "x";
+            // 
+            // textBoxImageHeight
+            // 
+            this.textBoxImageHeight.Location = new System.Drawing.Point(232, 321);
+            this.textBoxImageHeight.Name = "textBoxImageHeight";
+            this.textBoxImageHeight.Size = new System.Drawing.Size(100, 20);
+            this.textBoxImageHeight.TabIndex = 26;
+            this.textBoxImageHeight.Text = "200";
+            // 
+            // textBoxImageWidth
+            // 
+            this.textBoxImageWidth.Location = new System.Drawing.Point(232, 348);
+            this.textBoxImageWidth.Name = "textBoxImageWidth";
+            this.textBoxImageWidth.Size = new System.Drawing.Size(100, 20);
+            this.textBoxImageWidth.TabIndex = 27;
+            this.textBoxImageWidth.Text = "200";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(375, 66);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(101, 321);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(225, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "...where x and y and each in the range [-2, +2]";
+            this.label3.Size = new System.Drawing.Size(117, 20);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "image height:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(109, 348);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 20);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "image width:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 325);
+            this.ClientSize = new System.Drawing.Size(679, 520);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxImageWidth);
+            this.Controls.Add(this.textBoxImageHeight);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxYMax);
+            this.Controls.Add(this.textBoxYMin);
+            this.Controls.Add(this.textBoxXMax);
+            this.Controls.Add(this.textBoxXMin);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonRender);
             this.Controls.Add(this.buttonJulia);
@@ -252,7 +349,16 @@
         private System.Windows.Forms.Button buttonJulia;
         private System.Windows.Forms.Button buttonRender;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxXMin;
+        private System.Windows.Forms.TextBox textBoxXMax;
+        private System.Windows.Forms.TextBox textBoxYMin;
+        private System.Windows.Forms.TextBox textBoxYMax;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxImageHeight;
+        private System.Windows.Forms.TextBox textBoxImageWidth;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
     }
 }
 

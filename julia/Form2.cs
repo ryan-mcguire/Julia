@@ -36,5 +36,16 @@ namespace julia
                 ParentForm1.ZoomInOn(e.X, e.Y);
             }
         }
+
+        public void SetImageSize(int width, int height)
+        {
+            int extraWidth = this.Width - pictureBox1.Width;
+            int extraHeight = this.Height - pictureBox1.Height;
+
+            pictureBox1.Width = width;
+            pictureBox1.Height = height;
+            this.Width = width + extraWidth;
+            this.Height = height + extraHeight;
+        }
     }
 }

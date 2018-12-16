@@ -17,9 +17,12 @@ namespace julia
             InitializeComponent();
         }
 
+        
         private void buttonRender_Click(object sender, EventArgs e)
         {
             double txcr, tycr, t1cr, txci, tyci, t1ci, txzr, tyzr, t1zr, txzi, tyzi, t1zi;
+            double xmin, xmax, ymin, ymax;
+            int imageWidth, imageHeight;
 
             Double.TryParse(textBoxXCR.Text, out txcr);
             Double.TryParse(textBoxYCR.Text, out tycr);
@@ -34,15 +37,40 @@ namespace julia
             Double.TryParse(textBoxYZI.Text, out tyzi);
             Double.TryParse(textBox1ZI.Text, out t1zi);
 
-            Bitmap bm = GenerateBitmap(txcr, tycr, t1cr, txci, tyci, t1ci, txzr, tyzr, t1zr, txzi, tyzi, t1zi);
+            Double.TryParse(textBoxXMin.Text, out xmin);
+            Double.TryParse(textBoxXMax.Text, out xmax);
+            Double.TryParse(textBoxYMin.Text, out ymin);
+            Double.TryParse(textBoxYMax.Text, out ymax);
+
+            Int32.TryParse(textBoxImageWidth.Text, out imageWidth);
+            Int32.TryParse(textBoxImageHeight.Text, out imageHeight);
+
+            Parameters p = new Parameters()
+            {
+                Transform = new double[3][]
+                {
+                    new double[4] { txcr, txci, txzr, txzi},
+                    new double[4] { tycr, tyci, tyzr, tyzi},
+                    new double[4] { t1cr, t1ci, t1zr, t1zi},
+                },
+                ImageHeight = imageHeight,
+                ImageWidth = imageWidth,
+                XMin = xmin,
+                XMax = xmax,
+                YMin = ymin,
+                YMax = ymax
+            };
+
+            Bitmap bm = GenerateBitmap(p);
 
             Form2 form2 = new Form2();
             form2.SetForm1(this);
+            form2.SetImageSize(bm.Width, bm.Height);
             form2.SetPic(bm);
             form2.Visible = true;
         }
 
-        protected Bitmap GenerateBitmap(double txcr, double tycr, double t1cr, double txci, double tyci, double t1ci, double txzr, double tyzr, double t1zr, double txzi, double tyzi, double t1zi)
+        public Bitmap GenerateBitmap(Parameters p)
         {
             Color[] colorScheme = new Color[]
             {
@@ -54,27 +82,30 @@ namespace julia
                 Color.Cyan
             };
 
-            int pixelWidth = 200;
-            int pixelHeight = 200;
-            int maxValue = 100;
+            int pixelWidth = p.ImageWidth;
+            int pixelHeight = p.ImageHeight;
+            int maxValue = 250;
 
             Bitmap b = new Bitmap(pixelWidth, pixelHeight);
             for (int xx = 0; xx < pixelWidth; xx++)
             {
                 // How to map from xx: [0, pixelWidth] to x: [-2, 2]
-                double x = xx * 4.0 / pixelWidth + -2; 
+                double x = p.GetXForXX(xx);
+
                 for (int yy = 0; yy < pixelHeight; yy++)
                 {
-                    double y = yy * 4.0 / pixelWidth + -2;
+                    double y = p.GetYForYY(yy);
+
+                    CAndZ cAndZ = p.GetCAndZForXAndY(x, y);
 
                     // Calculate the value for this pixel.
                     /////////////////////////////////////
                     int value = 0;
 
-                    double cr = txcr * x + tycr * y + t1cr;
-                    double ci = txci * x + tyci * y + t1ci;
-                    double zr = txzr * x + tyzr * y + t1zr;
-                    double zi = txzi * x + tyzi * y + t1zi;
+                    double cr = cAndZ.CR;
+                    double ci = cAndZ.CI;
+                    double zr = cAndZ.ZR;
+                    double zi = cAndZ.ZI;
 
                     while (zr*zr + zi*zi < 4)
                     {
