@@ -55,6 +55,8 @@
             this.textBoxImageWidth = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxMaxIterations = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label2
@@ -165,7 +167,7 @@
             // 
             // buttonMandelbrot
             // 
-            this.buttonMandelbrot.Location = new System.Drawing.Point(315, 397);
+            this.buttonMandelbrot.Location = new System.Drawing.Point(315, 438);
             this.buttonMandelbrot.Name = "buttonMandelbrot";
             this.buttonMandelbrot.Size = new System.Drawing.Size(75, 23);
             this.buttonMandelbrot.TabIndex = 15;
@@ -175,7 +177,7 @@
             // 
             // buttonJulia
             // 
-            this.buttonJulia.Location = new System.Drawing.Point(396, 397);
+            this.buttonJulia.Location = new System.Drawing.Point(396, 438);
             this.buttonJulia.Name = "buttonJulia";
             this.buttonJulia.Size = new System.Drawing.Size(75, 23);
             this.buttonJulia.TabIndex = 16;
@@ -185,7 +187,7 @@
             // 
             // buttonRender
             // 
-            this.buttonRender.Location = new System.Drawing.Point(232, 442);
+            this.buttonRender.Location = new System.Drawing.Point(232, 485);
             this.buttonRender.Name = "buttonRender";
             this.buttonRender.Size = new System.Drawing.Size(75, 23);
             this.buttonRender.TabIndex = 17;
@@ -197,7 +199,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(228, 397);
+            this.label1.Location = new System.Drawing.Point(228, 438);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 18;
@@ -275,7 +277,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(101, 321);
+            this.label3.Location = new System.Drawing.Point(109, 319);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 20);
             this.label3.TabIndex = 28;
@@ -285,17 +287,37 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(109, 348);
+            this.label6.Location = new System.Drawing.Point(117, 346);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 20);
             this.label6.TabIndex = 29;
             this.label6.Text = "image width:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(100, 375);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(126, 20);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "max iterations:";
+            // 
+            // textBoxMaxIterations
+            // 
+            this.textBoxMaxIterations.Location = new System.Drawing.Point(232, 374);
+            this.textBoxMaxIterations.Name = "textBoxMaxIterations";
+            this.textBoxMaxIterations.Size = new System.Drawing.Size(100, 20);
+            this.textBoxMaxIterations.TabIndex = 31;
+            this.textBoxMaxIterations.Text = "100";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 520);
+            this.Controls.Add(this.textBoxMaxIterations);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxImageWidth);
@@ -359,6 +381,8 @@
         private System.Windows.Forms.TextBox textBoxImageWidth;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxMaxIterations;
     }
 }
 

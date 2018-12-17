@@ -12,6 +12,8 @@ namespace julia
 {
     public partial class Form1 : Form
     {
+        Form2 MyForm2 = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,9 +22,31 @@ namespace julia
         
         private void buttonRender_Click(object sender, EventArgs e)
         {
+            RenderFromForm();
+        }
+
+        protected void RenderFromForm()
+        {
+            Parameters p = GetParametersFromForm();
+
+            Bitmap bm = GenerateBitmap(p);
+
+            if (MyForm2 == null)
+            {
+                MyForm2 = new Form2();
+            }
+            MyForm2.SetForm1(this);
+            MyForm2.SetImageSize(bm.Width, bm.Height);
+            MyForm2.SetPic(bm);
+            MyForm2.Visible = true;
+        }
+
+        protected Parameters GetParametersFromForm()
+        {
             double txcr, tycr, t1cr, txci, tyci, t1ci, txzr, tyzr, t1zr, txzi, tyzi, t1zi;
             double xmin, xmax, ymin, ymax;
             int imageWidth, imageHeight;
+            int maxIterations;
 
             Double.TryParse(textBoxXCR.Text, out txcr);
             Double.TryParse(textBoxYCR.Text, out tycr);
@@ -44,8 +68,9 @@ namespace julia
 
             Int32.TryParse(textBoxImageWidth.Text, out imageWidth);
             Int32.TryParse(textBoxImageHeight.Text, out imageHeight);
+            Int32.TryParse(textBoxMaxIterations.Text, out maxIterations);
 
-            Parameters p = new Parameters()
+            return new Parameters()
             {
                 Transform = new double[3][]
                 {
@@ -58,16 +83,36 @@ namespace julia
                 XMin = xmin,
                 XMax = xmax,
                 YMin = ymin,
-                YMax = ymax
+                YMax = ymax,
+                MaxValue = maxIterations
             };
+        }
 
-            Bitmap bm = GenerateBitmap(p);
+        public void PutParametersInForm(Parameters p)
+        {
+            textBoxXCR.Text = p.Transform[0][0].ToString();
+            textBoxYCR.Text = p.Transform[1][0].ToString();
+            textBox1CR.Text = p.Transform[2][0].ToString();
+            textBoxXCI.Text = p.Transform[0][1].ToString();
+            textBoxYCI.Text = p.Transform[1][1].ToString();
+            textBox1CI.Text = p.Transform[2][1].ToString();
+            textBoxXZR.Text = p.Transform[0][2].ToString();
+            textBoxYZR.Text = p.Transform[1][2].ToString();
+            textBox1ZR.Text = p.Transform[2][2].ToString();
+            textBoxXZI.Text = p.Transform[0][3].ToString();
+            textBoxYZI.Text = p.Transform[1][3].ToString();
+            textBox1ZI.Text = p.Transform[2][3].ToString();
 
-            Form2 form2 = new Form2();
-            form2.SetForm1(this);
-            form2.SetImageSize(bm.Width, bm.Height);
-            form2.SetPic(bm);
-            form2.Visible = true;
+            textBoxXMin.Text = p.XMin.ToString();
+            textBoxXMax.Text = p.XMax.ToString();
+            textBoxYMin.Text = p.YMin.ToString();
+            textBoxYMax.Text = p.YMax.ToString();
+
+            textBoxImageWidth.Text = p.ImageWidth.ToString();
+            textBoxImageHeight.Text = p.ImageHeight.ToString();
+            textBoxMaxIterations.Text = p.MaxValue.ToString();
+
+
         }
 
         public Bitmap GenerateBitmap(Parameters p)
@@ -84,7 +129,6 @@ namespace julia
 
             int pixelWidth = p.ImageWidth;
             int pixelHeight = p.ImageHeight;
-            int maxValue = 250;
 
             Bitmap b = new Bitmap(pixelWidth, pixelHeight);
             for (int xx = 0; xx < pixelWidth; xx++)
@@ -110,7 +154,7 @@ namespace julia
                     while (zr*zr + zi*zi < 4)
                     {
                         value++;
-                        if (value > maxValue)
+                        if (value > p.MaxValue)
                         {
                             value = 0;
                             break;
@@ -161,12 +205,53 @@ namespace julia
             ZeroOutTextBoxes();
             textBoxXZR.Text = "1.000";
             textBoxYZI.Text = "1.000";
-            textBox1CI.Text = "1.000";
+            textBox1CI.Text = "0.636";
         }
 
-        public void ZoomInOn(int x, int y)
+        public void ZoomInOn(int xx1, int yy1, int xx2, int yy2)
         {
+            Parameters p = GetParametersFromForm();
 
+            // In case of just a click on a single point, zoom in on a small area around that point.
+            if (xx1 == xx2 && yy1 == yy2)
+            {
+                int xZoomSize = p.ImageWidth / 10;
+                int yZoomSize = p.ImageHeight / 10;
+                xx1 -= xZoomSize;
+                xx2 += xZoomSize;
+                yy1 -= yZoomSize;
+                yy2 += yZoomSize;
+            }
+
+            if (xx1 == xx2)
+            {
+                xx2 = xx1 + 1;
+            }
+            else if (xx2 < xx1)
+            {
+                int temp = xx1;
+                xx1 = xx2;
+                xx2 = temp;
+            }
+
+            if (yy1 == yy2)
+            {
+                yy2 = yy1 + 1;
+            }
+            else if (yy2 < yy1)
+            {
+                int temp = yy1;
+                yy1 = yy2;
+                yy2 = temp;
+            }
+
+            p.XMin = p.GetXForXX(xx1);
+            p.YMin = p.GetYForYY(yy1);
+            p.XMax = p.GetXForXX(xx2);
+            p.YMax = p.GetYForYY(yy2);
+
+            PutParametersInForm(p);
+            RenderFromForm();
         }
     }
 }

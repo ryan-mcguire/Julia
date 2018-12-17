@@ -12,6 +12,9 @@ namespace julia
 {
     public partial class Form2 : Form
     {
+        int MouseDownX = 0;
+        int MouseDownY = 0;
+
         Form1 ParentForm1 = null;
         public Form2()
         {
@@ -29,11 +32,16 @@ namespace julia
             this.ParentForm1 = form1;
         }
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            MouseDownX = e.X;
+            MouseDownY = e.Y;
+        }
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (ParentForm1 != null)
             {
-                ParentForm1.ZoomInOn(e.X, e.Y);
+                ParentForm1.ZoomInOn(MouseDownX, MouseDownY, e.X, e.Y);
             }
         }
 

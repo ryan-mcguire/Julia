@@ -20,6 +20,8 @@ namespace julia
         public double YMax { get; set; } = 2.000;
         public int ImageWidth { get; set; } = 200;
         public int ImageHeight { get; set; } = 200;
+        public int MaxValue { get; set; } = 100;
+
 
         public CAndZ GetCAndZForXAndY(double x, double y)
         {
