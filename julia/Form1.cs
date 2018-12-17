@@ -133,6 +133,7 @@ namespace julia
             Bitmap b = new Bitmap(pixelWidth, pixelHeight);
             for (int xx = 0; xx < pixelWidth; xx++)
             {
+                progressBar1.Value = xx * 100 / pixelWidth;
                 // How to map from xx: [0, pixelWidth] to x: [-2, 2]
                 double x = p.GetXForXX(xx);
 
@@ -252,6 +253,20 @@ namespace julia
 
             PutParametersInForm(p);
             RenderFromForm();
+        }
+
+        private void buttonZoomOut_Click(object sender, EventArgs e)
+        {
+            Parameters p = GetParametersFromForm();
+
+            p.XMin = p.GetXForXX(-p.ImageWidth);
+            p.XMax = p.GetXForXX(p.ImageWidth * 2);
+            p.YMin = p.GetYForYY(-p.ImageHeight);
+            p.YMax = p.GetYForYY(p.ImageHeight * 2);
+
+            PutParametersInForm(p);
+            RenderFromForm();
+
         }
     }
 }

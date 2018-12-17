@@ -57,6 +57,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxMaxIterations = new System.Windows.Forms.TextBox();
+            this.buttonZoomOut = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // label2
@@ -311,11 +313,30 @@
             this.textBoxMaxIterations.TabIndex = 31;
             this.textBoxMaxIterations.Text = "100";
             // 
+            // buttonZoomOut
+            // 
+            this.buttonZoomOut.Location = new System.Drawing.Point(472, 249);
+            this.buttonZoomOut.Name = "buttonZoomOut";
+            this.buttonZoomOut.Size = new System.Drawing.Size(75, 23);
+            this.buttonZoomOut.TabIndex = 32;
+            this.buttonZoomOut.Text = "Zoom Out";
+            this.buttonZoomOut.UseVisualStyleBackColor = true;
+            this.buttonZoomOut.Click += new System.EventHandler(this.buttonZoomOut_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(350, 485);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(300, 23);
+            this.progressBar1.TabIndex = 34;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 520);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.buttonZoomOut);
             this.Controls.Add(this.textBoxMaxIterations);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -383,6 +404,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxMaxIterations;
+        private System.Windows.Forms.Button buttonZoomOut;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
