@@ -199,6 +199,10 @@ namespace julia
             ZeroOutTextBoxes();
             textBoxXCR.Text = "1.000";
             textBoxYCI.Text = "1.000";
+            textBoxXMin.Text = "-2.000";
+            textBoxXMax.Text = "2.000";
+            textBoxYMin.Text = "-2.000";
+            textBoxYMax.Text = "2.000";
         }
 
         private void buttonJulia_Click(object sender, EventArgs e)
@@ -207,6 +211,10 @@ namespace julia
             textBoxXZR.Text = "1.000";
             textBoxYZI.Text = "1.000";
             textBox1CI.Text = "0.636";
+            textBoxXMin.Text = "-2.000";
+            textBoxXMax.Text = "2.000";
+            textBoxYMin.Text = "-2.000";
+            textBoxYMax.Text = "2.000";
         }
 
         public void ZoomInOn(int xx1, int yy1, int xx2, int yy2)
@@ -259,10 +267,13 @@ namespace julia
         {
             Parameters p = GetParametersFromForm();
 
-            p.XMin = p.GetXForXX(-p.ImageWidth);
+            double newXMin = p.GetXForXX(-p.ImageWidth);
+            double newYMin = p.GetYForYY(-p.ImageHeight);
+
             p.XMax = p.GetXForXX(p.ImageWidth * 2);
-            p.YMin = p.GetYForYY(-p.ImageHeight);
             p.YMax = p.GetYForYY(p.ImageHeight * 2);
+            p.XMin = newXMin;
+            p.YMin = newYMin;
 
             PutParametersInForm(p);
             RenderFromForm();
